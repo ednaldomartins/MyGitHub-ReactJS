@@ -1,10 +1,7 @@
 import styled from 'styled-components'
 
-export const Title = styled.h1`
-  font-size: 24px;
-  color: ${props => (props.error ? 'red' : '#000')};
-  font-family: Arial, Helvetica, sans-serif;
-  small {
-    font-size: 16px;
-  };
-`
+export const Container = styled.form``;
+
+export const Form = styled.form``;
+
+export const SubmitButton = styled.button``;
