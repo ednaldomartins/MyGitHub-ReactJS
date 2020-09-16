@@ -12,6 +12,22 @@ export default class Main extends Component {
     loading: false,
   }
 
+  componentDidMount() {
+    let repositories = localStorage.getItem('repositories')
+
+    if(repositories) {
+      this.setState({repositories: JSON.parse(repositories)})
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    let {repositories} = this.state
+
+    if (prevState.repositories !== repositories) {
+      localStorage.setItem('repositories', JSON.stringify(repositories))
+    }
+  }
+
   handleInputChange = e => {
     this.setState({newRepository: e.target.value})
   }
