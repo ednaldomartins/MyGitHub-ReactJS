@@ -71,3 +71,25 @@ export const SubmitButton = styled.button.attrs( props => ({
     `
   }
 `;
+
+export let List = styled.ul`
+  list-style: none;
+  margin-top: 24px;
+
+  li {
+    padding: 8px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & + li {
+      border-top: 1px solid #eef;
+    }
+
+    a {
+      color: #302099;
+      text-decoration: none;
+    }
+  }
+`;

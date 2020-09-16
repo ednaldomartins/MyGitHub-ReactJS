@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {FaGithubAlt, FaPlus, FaSpinner} from 'react-icons/fa'
 
-import {Container, Form, SubmitButton} from './style'
+import {Container, Form, SubmitButton, List} from './style'
 import api from '../../services/api'
 
 export default class Main extends Component {
@@ -19,10 +19,10 @@ export default class Main extends Component {
   handleSubmit = async e => {
     this.setState({ loading: true })
     e.preventDefault();
-    const {newRepository, repositories} = this.state
-    const res = await api.get(`/repos/${newRepository}`)
+    let {newRepository, repositories} = this.state
+    let res = await api.get(`/repos/${newRepository}`)
 
-    const data = {
+    let data = {
       name: res.data.full_name
     }
 
@@ -35,7 +35,7 @@ export default class Main extends Component {
 
   render() {
 
-    const {newRepository, loading} = this.state
+    let {newRepository, repositories, loading} = this.state
 
     return (
       <Container>
@@ -54,13 +54,22 @@ export default class Main extends Component {
 
           <SubmitButton loading={loading}>
             { loading ?
-                <FaSpinner color="#fff" size={14}/>
+                (<FaSpinner color="#fff" size={14}/>)
                 :
-                <FaPlus color="#fff" size={14}/>
+                (<FaPlus color="#fff" size={14}/>)
             }
           </SubmitButton>
 
         </Form>
+
+        <List>
+            {repositories.map(repository => (
+              <li key={repository.name}>
+                <span>{repository.name}</span>
+                <a href="">Detalhes</a>
+              </li>
+            ))}
+        </List>
       </Container>
     )
   }
